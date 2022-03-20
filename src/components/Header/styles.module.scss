@@ -1,0 +1,39 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+
+    background-color: #242426;
+
+    .profileImg {
+        border-radius: 99999px;
+        cursor: pointer;
+    }
+
+    .button {
+        transition: 0.2s;
+        height: 40px;
+        padding-left: 25px;
+        padding-right: 25px;
+        border: 1px solid #DAD88E;
+        background-color: transparent;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #DAD88E;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+
+        &:hover {
+            transition: 0.2s;
+            color: black;
+            background-color: #DAD88E;
+        }
+    }
+}

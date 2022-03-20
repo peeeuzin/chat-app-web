@@ -1,0 +1,32 @@
+.wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .loadingIcon {
+        color: #DAD88E;
+        animation: spinLoading 1s ease-in-out infinite;
+    }
+
+    .icon {
+        animation: icon 2s ease-in-out infinite;
+    }
+}
+
+@keyframes spinLoading {
+    0% { transform: rotateZ(50deg); }
+    100% { transform: rotateZ(410deg);  }
+}
+
+@keyframes icon {
+    0% { opacity: 1 }
+    50% { opacity: 0.8 }
+    100% { opacity: 1 }
+}

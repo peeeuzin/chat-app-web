@@ -1,0 +1,40 @@
+.content {
+    margin-top: 70px;
+    align-self: flex-end;
+
+    .bottom {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+
+        height: 50px;
+        background-color: #242426;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding-left: 25px;
+        padding-right: 25px;
+
+        .input {
+            height: 30px;
+            width: 90%;
+            background-color: #3d3d3d;
+            border-radius: 10px;
+            border: 0;
+            color: white;
+            font-size: 16px;
+            padding-left: 20px;
+            padding-right: 20px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .send {
+            color: #DAD88E;
+            cursor: pointer;
+        }
+    }
+}

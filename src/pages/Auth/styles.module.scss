@@ -1,0 +1,39 @@
+.wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .signInWithGithub {
+        transition: 0.2s;
+        cursor: pointer;
+        background: #DAD88E;
+        margin-top: 32px;
+        padding: 0 20px;
+        height: 42px;
+        color: #09090A;
+        font-size: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        svg {
+            margin-right: 16px;
+        }
+    
+        &:hover {
+            transition: 0.2s;
+            opacity: 0.8;
+        }
+    }
+}
