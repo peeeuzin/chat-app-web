@@ -18,7 +18,8 @@ Click [here](CONTRIBUTE.md) to see how to contribute
  - [ ] End to end encryptation
 
 # Techs used
-  * React
-  * Axios
-  * Sass
-  * Socket.io
+  * [React](https://reactjs.org/) as Front-end library
+  * [Axios](https://axios-http.com/) as HTTP Client
+  * [Sass](https://sass-lang.com/) as Styles
+  * [Socket.IO](https://socket.io/) as WebSocket
+  * [tweetnacl](https://tweetnacl.js.org/) as Crypto library
