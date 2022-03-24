@@ -1,0 +1,49 @@
+.wrapper {
+    margin: 0;
+    position: fixed;
+    top: 60px;
+    width: 20%;
+    bottom: 0;
+    min-width: 100px;
+
+    background-color: #222224;
+}
+
+.user {
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    margin: 20px 10px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    img {
+        border-radius: 9999px;
+    }
+
+    p {
+        margin-left: 10px;
+        font-weight: bold;
+        font-size: 14px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+    &:hover {
+        transition: 0.2s;
+        background-color: #3d3d3d;
+    }
+}
+
+@media (max-width: 660px) {
+    .user {
+        justify-content: center;
+
+        p {
+            display: none;
+        }
+    }
+}

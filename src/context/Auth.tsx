@@ -1,5 +1,7 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import axios from '@services/axios';
+import { useSocket } from '@services/useSocket';
+import { Socket } from 'socket.io-client';
 
 type User = {
     id: string;
@@ -13,6 +15,7 @@ type AuthContextData = {
     user: User | null;
     isLoggedIn: boolean;
     isLoading: boolean;
+    socket: Socket | null;
     signInUrl: () => void;
     signOut: () => void;
 };
@@ -32,6 +35,7 @@ function AuthProvider(props: propsAuthProvider) {
     const [user, setUser] = useState<User | null>(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [socket, setSocket] = useState<Socket | null>(null);
 
     const signInUrl = () => {
         window.location.assign(
@@ -40,22 +44,24 @@ function AuthProvider(props: propsAuthProvider) {
     };
 
     const signIn = async (code: string) => {
+        setIsLoading(true);
+
         const response = await axios.post<AuthResponse>('/auth', {
             code,
         });
-
         const { token, user } = response.data;
+
+        setSocket(await useSocket(token));
 
         localStorage.setItem('@chat-app:token', token);
 
         axios.defaults.headers.common.authorization = `Bearer ${token}`;
 
-        setIsLoggedIn(true);
         setUser(user);
     };
 
     const signOut = () => {
-        setIsLoggedIn(false);
+        setIsLoading(false);
         setUser(null);
         localStorage.removeItem('@chat-app:token');
     };
@@ -65,11 +71,21 @@ function AuthProvider(props: propsAuthProvider) {
 
         if (token) {
             axios.defaults.headers.common.authorization = `Bearer ${token}`;
-
-            axios.get<User>('profile').then((res) => {
-                setIsLoggedIn(true);
-                setUser(res.data);
+            setIsLoading(true);
+            useSocket(token).then((socket) => {
+                setSocket(socket);
             });
+
+            axios
+                .get<User>('profile')
+                .then((res) => {
+                    setUser(res.data);
+                })
+                .catch((e) => {
+                    if (e.response.status === 401) {
+                        signOut();
+                    }
+                });
         } else {
             setIsLoading(false);
         }
@@ -84,12 +100,12 @@ function AuthProvider(props: propsAuthProvider) {
 
             window.history.pushState({}, '', urlWithoutCode);
 
-            setIsLoggedIn(true);
             signIn(code);
         }
     }, []);
 
     useEffect(() => {
+        setIsLoggedIn(!!user);
         if (user) {
             setIsLoading(false);
         }
@@ -97,7 +113,7 @@ function AuthProvider(props: propsAuthProvider) {
 
     return (
         <AuthContext.Provider
-            value={{ signInUrl, user, signOut, isLoggedIn, isLoading }}
+            value={{ signInUrl, user, signOut, isLoggedIn, isLoading, socket }}
         >
             {props.children}
         </AuthContext.Provider>

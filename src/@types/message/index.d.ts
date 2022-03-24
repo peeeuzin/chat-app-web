@@ -2,8 +2,7 @@ export type Message = {
     // eslint-disable-next-line camelcase
     created_at: string;
     text: string;
-    user: User;
-    userId: string;
+    author: User;
 };
 
 type User = {

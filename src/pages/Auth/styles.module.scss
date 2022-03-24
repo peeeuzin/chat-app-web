@@ -8,19 +8,23 @@
     justify-content: center;
     align-items: center;
 
+    .loginBoxWrapper {
+        text-align: center;
+    }
+
     .signInWithGithub {
         transition: 0.2s;
         cursor: pointer;
-        background: #DAD88E;
+        background: transparent;
         margin-top: 32px;
         padding: 0 20px;
-        height: 42px;
-        color: #09090A;
+        height: 46px;
+        color: #DAD88E;
+        border: 0.5px solid #DAD88E;
         font-size: 14px;
         font-weight: bold;
         text-transform: uppercase;
         text-decoration: none;
-        border: none;
         border-radius: 5px;
     
         display: flex;
@@ -33,7 +37,8 @@
     
         &:hover {
             transition: 0.2s;
-            opacity: 0.8;
+            background: #DAD88E;
+            color: black;
         }
     }
 }

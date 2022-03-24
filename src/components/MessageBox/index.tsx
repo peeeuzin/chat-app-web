@@ -8,29 +8,40 @@ type Props = {
 };
 
 function MessageBox({ isMe, message, author }: Props) {
-    function setIsMe() {
-        if (isMe) {
-            return {
-                borderBottomRightRadius: 0,
-                backgroundColor: '#DAD88E',
-                color: 'black',
-            };
-        } else {
-            return { borderBottomLeftRadius: 0, backgroundColor: '#242426' };
-        }
-    }
-
     return (
-        <div
-            className={styles.wrapper}
-            style={{
-                borderRadius: 99,
-                ...setIsMe(),
-            }}
-        >
-            {!isMe && <p className={styles.author}>{author}</p>}
-            {message}
-        </div>
+        <>
+            {isMe ? (
+                <div
+                    className={styles.wrapper}
+                    style={{
+                        borderTopRightRadius: 99,
+                        borderTopLeftRadius: 99,
+                        borderBottomLeftRadius: 99,
+                        borderBottomRightRadius: 0,
+                        backgroundColor: '#DAD88E',
+                        color: 'black',
+                    }}
+                >
+                    {!isMe && <p className={styles.author}>{author}</p>}
+                    {message}
+                </div>
+            ) : (
+                <div
+                    className={styles.wrapper}
+                    style={{
+                        borderTopRightRadius: 99,
+                        borderTopLeftRadius: 99,
+                        borderBottomLeftRadius: 0,
+                        borderBottomRightRadius: 99,
+                        backgroundColor: '#242426',
+                        color: 'white',
+                    }}
+                >
+                    {!isMe && <p className={styles.author}>{author}</p>}
+                    {message}
+                </div>
+            )}
+        </>
     );
 }
 
